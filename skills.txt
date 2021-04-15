@@ -1,0 +1,26 @@
+Python skills:
+
+Proper syntax rules
+How to print
+How to assign a variable
+How to include punctuation otherwise maybe omitted
+How to apply functions to strings and within print
+How to access portions of strings using square brackets and index value
+How operators work, including assignment and math import
+How to use multi line strings for comments/heredocs
+
+creating a dictionary
+How to import dictionaries
+How to assign and name variables
+How to use the imported reduce function
+How to calculate a list with said function
+How to use the repr command - when to put a new line character in
+Understanding how raw data is pushed through an API first being rendered through repr
+Understanding modern string interpolation in py3
+How 'f' strings work with multi line
+How to do index based string interpolation 
+how to use 'find', 'index'
+How to use lstrip and rstrip to clean up data
+Do not change the kind of data within a variable
+Learning about isnumeric functions and how it applies to numeric values in a string
+

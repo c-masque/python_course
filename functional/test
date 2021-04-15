@@ -1,0 +1,16 @@
+tea = 'It works!'
+print(tea)
+
+# Booleans - true or false value
+# Numbers - standard integers, floats, decimals
+# Strings - any type of byte sequence within '' or ""; strings cannot be combined with a number
+# Bytes and byte array - literal bytes of data
+# None - empty value / unset variable
+# List - carries data in a list, an array; i.e. (car1, car2, car3)
+# Tuples - unmutable lists, permanent and rigid
+# Sets - only unique values in a list
+# Dictionaries - sets of key value pairs, like a dictionary
+
+#starter_sentence = 'The quick brown fox jumped'
+#new_sentence = starter_sentence[:-2] + 's'
+#print(new_sentence)

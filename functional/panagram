@@ -1,0 +1,2 @@
+panagram = 'Sphinx of black quartz, judge my vow...'
+print(panagram.upper())
