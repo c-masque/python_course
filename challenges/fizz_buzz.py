@@ -14,17 +14,21 @@ still following all of the same rules.
 
 def fizz_buzz_machine(max_num):
     fizzy_range = list(range(1, max_num + 1))
+    buzzy_string = ''
+
     #print(str(fizzy_range) + "\n")
 
     for num in fizzy_range:
         if num % 3 == 0 and num % 5 == 0:
-            print('fizzbuzz')
-        elif num % 5 ==0:
-            print('buzz')
+            buzzy_string += 'fizzbuzz '
+        elif num % 5 == 0:
+            buzzy_string += 'buzz '
         elif num % 3 == 0:
-            print('fizz')
+            buzzy_string += 'fizz '
         else:
-            print(num)
-            
+            buzzy_string += str(num) + ' '
 
-fizz_buzz_machine(20)
+    return buzzy_string
+
+
+print(fizz_buzz_machine(100))
