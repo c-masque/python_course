@@ -26,8 +26,7 @@ Y8ooooo. 88'  `"" 88 Y8ooooo. Y8ooooo. 88'  `88 88'  `88 Y8ooooo.    88'  `88 88
 import random
 
 ## GLOBAL VARIABLES ##
-leave_game = False
-
+game_start = True
 
 ## THE RANDOMIZER ##
 
@@ -46,10 +45,10 @@ def randomizer(odds_and_ends):
 
 random_phrase_dictionary = {
     'selection_weights': {
-        'What move would you like to make?..': 1,
-        'Choose your weapon...': 1,
-        'Pick your battle instrument...': 1,
-        'Make a selection...': 3
+        'What move would you like to make?\n\n*************************************': 1,
+        'Choose your weapon.\n\n*************************************': 1,
+        'Pick your battle instrument.\n\n*************************************': 1,
+        'Make a selection.\n\n*************************************': 3
     },
 
     'winning_weights': {
@@ -74,7 +73,7 @@ def make_a_selection_narration():
     result = randomizer(random_phrase_dictionary['selection_weights'])
     print(result)
 
-#make_a_selection_narration() - FOR DEBUGGING RUN
+#make_a_selection_narration() - FOR DEBUGGING PURPOSES
 
 
 ## PLAYER WEAPON SELECTION ##
@@ -85,29 +84,30 @@ def player_weapon_selection():
         
         if your_weapon == 'rock' or your_weapon == '1':
           your_weapon = 0
-          print('You have selected the rock')
+          print('\nYou have selected the humble rock...\n')
           return your_weapon
 
         elif your_weapon == 'paper' or your_weapon == '2':
           your_weapon = 1
-          print('You have selected the paper')
+          print('\nYou have selected the esteemed paper.\n')
           return your_weapon
 
         elif your_weapon == 'scissors' or your_weapon == '3':
           your_weapon = 2
-          print('You have selected the scissors')
+          print('\nYou have selected the cunning scissors.\n')
           return your_weapon
 
         elif your_weapon == 'gun':
-          print('You have selected gun for some reason...\nPretty sure that\'s cheating, but whatever.')
+          your_weapon = 3
+          print('\nYou have selected gun for some reason...\nPretty sure that\'s cheating, but whatever.\n')
           return your_weapon
 
         else:
           print('I don\'t even know what you are saying...')
           continue
     
-player_weapon = player_weapon_selection()
-print('THE PLAYER WEAPON VALUE IS: ' + str(player_weapon))
+#player_weapon = player_weapon_selection()
+#print('THE PLAYER WEAPON VALUE IS: ' + str(player_weapon)) # FOR DEBUGGING PURPOSES
 
 ## COMPUTER WEAPON SELECTION ##
 
@@ -116,9 +116,9 @@ def computer_weapon_selection():
     result = result[0]
     return result 
 
-cp_weapon = computer_weapon_selection() # THIS RETURNS THE INDEX NUMBER FOR WEAPON
+#cp_weapon = computer_weapon_selection() # THIS RETURNS THE INDEX NUMBER FOR WEAPON
 
-print('THE COMPUTER WEAPON VALUE IS: ' + str(cp_weapon)) # FOR DEBUGGING RUN
+# print('THE COMPUTER WEAPON VALUE IS: ' + str(cp_weapon)) # FOR DEBUGGING PURPOSES
 
 #print(list(random_phrase_dictionary['opponent_selection'].keys())[0][1])
 
@@ -138,90 +138,99 @@ def weapon_comparison(player_weapon, cp_weapon):
             print('bang \n')
 
     elif player_weapon == cp_weapon: # draw condition
-        print('It is a draw.')
+        input('It is a draw. :| \n')
         return False
 
     elif cp_weapon == 0 and player_weapon == 2: # player loses to rock
-        print('You lose.')
+        input('You lose. :( \n')
         return False
 
     elif player_weapon == 0 and cp_weapon == 2: # player wins with rock
-        print('You win.')
+        input('You win. :) \n')
         return True
 
     elif player_weapon > cp_weapon:
-        print('You win.')
+        input('You win. :) \n')
         return True
 
     else:
-        print('You lose.')
+        input('You lose. :( \n')
         return False
 
     return bool(you_win)
 
-print(str(player_weapon) + ' vs ' + str(cp_weapon)) # FOR DEBUGGING RUN
+#print(str(player_weapon) + ' vs ' + str(cp_weapon)) # FOR DEBUGGING RUN
 
-are_ya_winning_son = weapon_comparison(player_weapon, cp_weapon)
-print(are_ya_winning_son) # FOR DEBUGGING RUN
+#are_ya_winning_son = weapon_comparison(player_weapon, cp_weapon)
+#print(are_ya_winning_son) # FOR DEBUGGING RUN
 
 ## YOU WIN OR LOSE ##
 
 def results_narration(results):
     if results == 0:
-        print('Looks like you didn\'t win this one.')
-    else:
-        print('You won! Great work.')
+        print('Looks like you didn\'t win this one.\n')
+        pass
 
-results_narration(bool(are_ya_winning_son)) # FOR DEBUGGING RUN - RETURNS RESULT NARRATION
+    else:
+        print('You won! Great work.\n')
+        pass
+
+    wanna_play_again()
+
+#results_narration(bool(are_ya_winning_son)) # FOR DEBUGGING RUN - RETURNS RESULT NARRATION
 
 ## PLAY AGAIN FUNCTION ##
 
 def wanna_play_again():
-    play_again_friend = False
+    play_again_friend = True
 
-    while play_again_friend == False:
+    while play_again_friend == True:
 
         again = input('Wanna play again? (Y/N) : ').lower() # note: input gives a string indexed at 0
 
         if again == 'yes' or again == 'y':
-            print('Okay, you want to play again.')
-            play_again_friend = True
+            print('\nOkay, you want to play again.\
+            \n\n*************************************')
+            play_again_friend = False
 
         elif again == 'no' or again == 'n':
-            print('Okay, you don\'t want to play anymore. Goodbye.')
-            break
+            print('\nOkay, you don\'t want to play anymore. Goodbye.')
+            game_start == False
+            quit()
 
         else:
             print('I didn\'t understand that... Try again.')
 
-wanna_play_again() # FOR DEBUGGING RUN
+#wanna_play_again() # FOR DEBUGGING RUN
 
-def rps_game ():
-    while rps_game == True:
-        print('\nWelcome to this Rock Paper Scissor Game.')
 
-    ## MAKE A SELECTION ##
-        print(make_a_selection_narration()) # purely narration
-        player_weapon_selection() # computer weapon selection to be inserted in function
-        print(player_weapon_selection()) # select weapon screen from list - your_weapon is player var
+def rps_game(game_start):
+
+    while game_start == True:
+        print('\nWelcome to this normal Rock Paper Scissor Game.\n')
+
+        ## MAKE A SELECTION ##
+        make_a_selection_narration() # purely narration
+        player_weapon = player_weapon_selection()
+        cp_weapon = computer_weapon_selection()
         
-    ## IT IS TIME TO DUEL ##
-        input("On your mark...")
+        ## IT IS TIME TO DUEL ##
+        input("On your mark...\n")
         input(' __  _  /_\n//_//_ /\ \n')
         input(" _  _  _  _  _\n /_//_|/_//_'/ \n/     /      ")
         input(" _ _  .  _  _ _  _  _\n_\ /_ / _\ _\ /_// _\ \n")
 
 
-    ## COMPARISON OF CP AND PLAYER RESULTS
-        weapon_comparison() # RETURNS TRUE OR FALSE
+        ## COMPARISON OF CP AND PLAYER RESULTS
+        # I know the below code is a disaster, ok - I'm not fixing it rn - it worked
+        print('Your ' +\
+            list(random_phrase_dictionary['opponent_selection'].keys())[player_weapon][1]\
+            + ' vs ' + \
+            'computer\'s ' + list(random_phrase_dictionary['opponent_selection'].keys())[cp_weapon][1]\
+            + '\n')
+        are_ya_winning_son = weapon_comparison(player_weapon, cp_weapon)
 
-    ## PLAYER WINS
-        if player_win = True:
-        wanna_play_again() #breaks or False
+        ## RESULTS
+        results_narration(bool(are_ya_winning_son))
 
-    ## CP WINS
-        else:
-        print('Well that didn\'t work.')
-        wanna_play_again() #breaks or False
-
-rps_game()
+rps_game(game_start)
