@@ -1,5 +1,4 @@
-import numpy as np
-import random
+import random as r
 
 #*********************************************************
 # 1)
@@ -42,6 +41,19 @@ def horrifying_ugly_code_maker(stringy):
 
 print(horrifying_ugly_code_maker('okay'))
 
+
+def string_accumulator(string):
+
+    counter = 1
+    char_list = []
+
+    for char in string:
+        char_list.append((char * counter).title())
+        counter += 1
+
+    return "-".join(char_list)
+        
+
 #*********************************************************
 # 3)
 # Write a program that generates a random hexadecimal color value
@@ -50,11 +62,30 @@ print(horrifying_ugly_code_maker('okay'))
 # EX. #FFFF54, #1235FH, #000458, etc...
 
 def random_color():
-    
-    # so now it is like below
 
-    color = [''.join([random.choice('ABCDEF0123456789') for each in range(6)])]
+    color = [''.join([r.choice('ABCDEF0123456789') for each in range(6)])]
     print('https://rgbcolorcode.com/amp/' + str(color[0]))
     return color[0]
 
 print('#' + random_color())
+
+#def random_hex():
+#    letters= ['a', 'b', 'c', 'd']
+#    ran_let = [r.choice)letters]
+#    ran_num = [r.randint(0,9)]
+#    li_mult = (ran_let + ran_num) * 3
+#
+#    return # + .join(map(str, li_mult)) # not that great
+
+def rand_hex():
+    hex_values = list([*range(10)] + list('ABCDEF'))
+    final_hex = []
+    i = 1
+
+    while i <= 6:
+        final_hex.append(str(hex_values[r.randint(0, 15)]))
+        i += 1
+    
+    return "#" + ''.join(final_hex)
+
+print(rand_hex())
