@@ -52,8 +52,15 @@ random_phrase_dictionary = {
     },
 
     'winning_weights': {
-        'Yeah, you win.': 1,
-        'That\'s called winning, son.': 1
+        'You did pretty good there.\n': 1,
+        'That\'s called winning, son.\n': 1,
+        'Honestly was kind of hoping you\d lose this time...\n': 1
+    },
+
+    'losing_weights': {
+        'That sucks. I\'m sorry.\n': 10,
+        'I was expecting more out of that...\n': 10,
+        'Hank Hill: YOU\'RE A LOSER. A LOSER.\n': 1
     },
 
     'opponent_selection': {
@@ -168,11 +175,13 @@ def weapon_comparison(player_weapon, cp_weapon):
 
 def results_narration(results):
     if results == 0:
-        print('Looks like you didn\'t win this one.\n')
+        losing_result = randomizer(random_phrase_dictionary['losing_weights'])
+        print(losing_result)
         pass
 
     else:
-        print('You won! Great work.\n')
+        winning_result = randomizer(random_phrase_dictionary['winning_weights'])
+        print(winning_result)
         pass
 
     wanna_play_again()
