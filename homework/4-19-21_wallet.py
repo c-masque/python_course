@@ -14,6 +14,7 @@ class Wallet():
       print('\n.:*~*:._.:*~*:._.:*~*:._.:*~*:._.:*~*:._.:*~*:._.:*~*:._.:*~*:.\n')
 
    def main_menu(self):
+      Wallet.squiggly(self)
       menu_select = input('What would you like to do?\n\n (1) Check Balance | (2) Deposit | (3) Withdrawal | (4) Exit | >>> ').lower()
       #print(menu_select) # for debugging - remove before submission
 
@@ -62,7 +63,6 @@ class Wallet():
 
       else:
          print(self.balance_query())
-         Wallet.squiggly(self)
          Wallet.main_menu(self)
 
       Wallet.squiggly(self)
@@ -122,7 +122,6 @@ class Wallet():
 
    def __init__(self):
       print('\nHello, PyWallet here.')
-      Wallet.squiggly(self)
       Wallet.main_menu(self)
    
 
