@@ -35,7 +35,7 @@ class Wallet():
          exit()
 
    def balance_query(self):
-      balance_object = open('V:\web development\\repositories\projects\Bottega\python\homework\wallet_data.py', 'r+')
+      balance_object = open('wallet_data.py', 'r+')
       data = balance_object.read()
       data = float(data)
       print_data = str(format(data, '.2f'))
@@ -44,7 +44,7 @@ class Wallet():
       return deposit_question
 
    def balance_data(self):
-      balance_object = open('V:\web development\\repositories\projects\Bottega\python\homework\wallet_data.py', 'r+')
+      balance_object = open('wallet_data.py', 'r+')
       data = float(balance_object.read())
       balance_object.close()
       return data
@@ -91,7 +91,7 @@ class Wallet():
 
          elif val >= 0:
             new_balance = data + val
-            file = open('V:\web development\\repositories\projects\Bottega\python\homework\wallet_data.py', 'r+')
+            file = open('wallet_data.py', 'r+')
             file.write(str(new_balance))
 
             print('\nYou deposited: $' + str(format(val, '.2f')))
@@ -128,7 +128,7 @@ class Wallet():
 
          elif val >= 0:
             new_balance = data - val
-            file = open('V:\web development\\repositories\projects\Bottega\python\homework\wallet_data.py', 'r+')
+            file = open('wallet_data.py', 'r+')
             file.write(str(new_balance))
 
             print('\nYou withdrew: $' + str(format(val, '.2f')))
@@ -148,7 +148,7 @@ class Wallet():
    
 
    def leave_menu(self):
-      print('*closes wallet*')
+      print('\n*closes wallet*\n')
       exit()
    
 

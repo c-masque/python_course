@@ -10,8 +10,10 @@
 """
 class Wallet():
 
+   # essential decoration #
    def squiggly(self):
       print('\n.:*~*:._.:*~*:._.:*~*:._.:*~*:._.:*~*:._.:*~*:._.:*~*:._.:*~*:.\n')
+
 
    def main_menu(self):
       Wallet.squiggly(self)
@@ -34,9 +36,11 @@ class Wallet():
          print('Something else happened...')
          exit()
 
+
    def balance_query(self):
-      balance_object = open('V:\web development\\repositories\projects\Bottega\python\homework\wallet_data.py', 'r+')
-      data = balance_object.read()
+
+      balance_object = open(self.wal, 'r')
+      data = (balance_object.read())
       data = float(data)
       print_data = str(format(data, '.2f'))
       deposit_question = '\nYour balance: $' + print_data
@@ -44,7 +48,7 @@ class Wallet():
       return deposit_question
 
    def balance_data(self):
-      balance_object = open('V:\web development\\repositories\projects\Bottega\python\homework\wallet_data.py', 'r+')
+      balance_object = open(self.wal, 'r+')
       data = float(balance_object.read())
       balance_object.close()
       return data
@@ -91,7 +95,7 @@ class Wallet():
 
          elif val >= 0:
             new_balance = data + val
-            file = open('V:\web development\\repositories\projects\Bottega\python\homework\wallet_data.py', 'r+')
+            file = open(self.wal, 'r+')
             file.write(str(new_balance))
 
             print('\nYou deposited: $' + str(format(val, '.2f')))
@@ -128,7 +132,7 @@ class Wallet():
 
          elif val >= 0:
             new_balance = data - val
-            file = open('V:\web development\\repositories\projects\Bottega\python\homework\wallet_data.py', 'r+')
+            file = open(self.wal, 'r+')
             file.write(str(new_balance))
 
             print('\nYou withdrew: $' + str(format(val, '.2f')))
@@ -148,7 +152,7 @@ class Wallet():
    
 
    def leave_menu(self):
-      print('*closes wallet*')
+      print('\n*closes wallet*\n')
       exit()
    
 
@@ -158,6 +162,29 @@ class Wallet():
         '''.strip()
 
    def __init__(self):
+      import os
+
+      # essential variables #
+      self.wal = 'wallet_data.txt'
+
+      def check_file_empty(file_path):
+
+         if os.stat(file_path).st_size == 0:
+            return True
+         else:
+            return False
+
+      if os.path.exists(self.wal):
+         if check_file_empty(self.wal):
+            file = open(self.wal, 'w+')
+            file.write('0.00')
+            file.close()
+
+      else:
+         file = open(self.wal, 'x')
+         file.write('0.00')
+         file.close()
+
       print('\nHello, PyWallet here.')
       Wallet.main_menu(self)
    
