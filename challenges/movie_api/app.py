@@ -21,13 +21,12 @@ import os
 
 app = Flask(__name__)
 
-db = SQLAlchemy(app)
-ma = Marshmallow(app)
-
 basedir = os.path.abspath(os.path.dirname(__file__))
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'app.sqlite')
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
+db = SQLAlchemy(app)
+ma = Marshmallow(app)
 
 class Movie(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -40,7 +39,10 @@ class Movie(db.Model):
     def __init__(self, title, content, rating, leading_role, release_year):
         self.title = title
         self.content = content
-
+        self.rating = rating
+        self.leading_role = leading_role
+        self.release_year = release_year
+        
 
 class MovieSchema(ma.Schema):
     class Meta:
@@ -66,13 +68,13 @@ def add_movie():
     release_year = request.json['release_year']
 
     new_movie_entry = Movie(title, content, rating, leading_role, release_year)
+
     db.session.add(new_movie_entry)
     db.session.commit()
 
-    movie_entry = Movie.query.get(movie_entry.id)
+    movie_entry = Movie.query.get(new_movie_entry.id)
 
-    # THIS RETURN IS SUPER BROKEN
-    return movie_schema.jsonify(movie_entry) # FIX FIX FIX
+    return movie_schema.jsonify(movie_entry)
 
 
 if __name__ == "__main__":
