@@ -58,7 +58,7 @@ movies_schema = MovieSchema(many=True)
 def home():
     return "This is the root"
 
-@app.route("/new-movie-entry", methods=['POST'])
+@app.route("/movie-entry", methods=['POST'])
 def add_movie():
 
     title = request.json['title']
@@ -75,6 +75,18 @@ def add_movie():
     movie_entry = Movie.query.get(new_movie_entry.id)
 
     return movie_schema.jsonify(movie_entry)
+
+
+@app.route("/all-movies", methods=['POST'])
+def add_movies():
+
+    title = request.json['title']
+    content = request.json['content']
+    rating = request.json['rating']
+    leading_role = request.json['leading_role']
+    release_year = request.json['release_year']
+
+    new_movie_entries = Movie(title, content, rating, leading_role, release_year)
 
 
 if __name__ == "__main__":
